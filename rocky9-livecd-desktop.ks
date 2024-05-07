@@ -3,72 +3,68 @@
 # http://fedoraproject.org/wiki/SIGs/Desktop
 # mailto:desktop@lists.fedoraproject.org
 
+##
+## This is the base file for the CD iso build.
+## Additional files required are rocky9-live-desktop.ks and rocky9-live-base.ks
+## File rocky9-live-minimization.ks has been removed
+## Would like to condense it down to one kickstart file
+## current package count is 1267
+
 %include rocky9-live-desktop.ks
-%include rocky9-live-minimization.ks
 
 %packages
-# First, no office
--libreoffice-*
--planner
 
-# Temporary list of things removed from comps but not synced yet
--specspo
+#######@gnome-desktop
+@gnome-apps
 
-# Drop the Java plugin
--icedtea-web
--java-1.6.0-openjdk
+@^workstation-product-environment
 
-# Drop things that pull in perl
--linux-atm
--perf
+# FIXME; apparently the glibc maintainers dislike this, but it got put into the
+# desktop image at some point.  We won't touch this one for now.
+nss-mdns
 
-# No printing
--foomatic-db-ppds
--foomatic
+@base-x
+@base
+@core
+@fonts
+@input-methods
+# use a small pinyin db for live
+-ibus-pinyin-db-open-phrase
+##################################ibus-pinyin-db-android
+#################################@admin-tools
+###################################@printing
 
-# Dictionaries are big
--aspell-*
--hunspell-*
--man-pages*
--words
+#################PACKAGES NOT YET TESTED BROADCOM ITEMS FOR MAC 
+##broadcom-wl
+##kmod-wl
+##akmod-wl
 
-# Help and art can be big, too
--gnome-user-docs
--evolution-help
--gnome-games-help
--desktop-backgrounds-basic
--*backgrounds-extras
+#######################END
 
-# Legacy cmdline things we don't want
--nss_db
--krb5-auth-dialog
--krb5-workstation
--pam_krb5
--quota
--nano
--minicom
--dos2unix
--finger
--ftp
--jwhois
--mtr
--pinfo
--rsh
--telnet
--nfs-utils
--ypbind
--yp-tools
--rpcbind
--acpid
--ntsysv
 
-# Drop some system-config things
--system-config-boot
--system-config-language
--system-config-network
--system-config-rootpassword
--system-config-services
--policycoreutils-gui
+
+
+
+@dial-up
+@hardware-support
+
+
+# Explicitly specified here:
+# <notting> walters: because otherwise dependency loops cause yum issues.
+kernel
+
+# This was added a while ago, I think it falls into the category of
+# "Diagnosis/recovery tool useful from a Live OS image".  Leaving this untouched
+# for now.
+memtest86+
+
+# The point of a live image is to install
+anaconda
+isomd5sum
+
+# fpaste is very useful for debugging and very small
+fpaste
+
 
 %end
 

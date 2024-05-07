@@ -33,53 +33,12 @@ repo --name=epel --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=
 ##################################################
 
 
-##repo --name=rawhide --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&arch=$basearch
-##repo --name=fedora --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-$releasever&arch=$basearch
-##repo --name=updates --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f$releasever&arch=$basearch
-##repo --name=updates-testing --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=updates-testing-f$releasever&arch=$basearch
-
 %packages
-@base-x
-@base
-@core
-@fonts
-@input-methods
-# use a small pinyin db for live
--ibus-pinyin-db-open-phrase
-##################################ibus-pinyin-db-android
-#################################@admin-tools
-###################################@printing
 
-#################PACKAGES NOT YET TESTED BROADCOM ITEMS
-##broadcom-wl
-##kmod-wl
-##akmod-wl
-
-#######################END
-
-
-
-
-
-@dial-up
-@hardware-support
-
-
-# Explicitly specified here:
-# <notting> walters: because otherwise dependency loops cause yum issues.
-kernel
-
-# This was added a while ago, I think it falls into the category of
-# "Diagnosis/recovery tool useful from a Live OS image".  Leaving this untouched
-# for now.
-memtest86+
-
-# The point of a live image is to install
-anaconda
-isomd5sum
-
-# fpaste is very useful for debugging and very small
-fpaste
+###
+### Package callouts have been moved to rocky9-livecd-desktop.ks
+### to centralize and simplify edits
+###
 
 %end
 

@@ -7,17 +7,11 @@
 part / --size 4096
 
 %packages
-@graphical-internet
-@sound-and-video
-@gnome-desktop
-@office
 
-# FIXME; apparently the glibc maintainers dislike this, but it got put into the
-# desktop image at some point.  We won't touch this one for now.
-nss-mdns
-
-# This one needs to be kicked out of @base
--smartmontools
+###
+### Package callouts have been moved to rocky9-livecd-desktop.ks
+### to centralize and simplify edits
+###
 
 %end
 
